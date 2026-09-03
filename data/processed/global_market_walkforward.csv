@@ -1,0 +1,13 @@
+Year,Target,Actual,Predicted,Model,Split
+2019,Market_Value,320.0,285.0,Naive_LastValue,walk_forward
+2020,Market_Value,528.0,320.0,Naive_LastValue,walk_forward
+2021,Market_Value,2100.0,528.0,Naive_LastValue,walk_forward
+2022,Market_Value,1900.0,2100.0,Naive_LastValue,walk_forward
+2023,Market_Value,755.0,1900.0,Naive_LastValue,walk_forward
+2024,Market_Value,535.0,755.0,Naive_LastValue,walk_forward
+2019,Market_Volume,105.0,86.01152038574219,XGBoost,walk_forward
+2020,Market_Volume,208.0,84.76286315917969,XGBoost,walk_forward
+2021,Market_Volume,516.0,182.64822387695312,XGBoost,walk_forward
+2022,Market_Volume,254.0,433.03228759765625,XGBoost,walk_forward
+2023,Market_Volume,112.0,238.71617126464844,XGBoost,walk_forward
+2024,Market_Volume,84.0,140.89414978027344,XGBoost,walk_forward

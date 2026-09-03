@@ -1,0 +1,72 @@
+{
+  "target": "Market_Value",
+  "selected_model": "Naive_LastValue",
+  "feature_columns": [
+    "Year_Index",
+    "Market_Value_lag1",
+    "Market_Value_lag2",
+    "Market_Value_roll3",
+    "Market_Value_growth",
+    "Market_Volume_lag1",
+    "Market_Volume_lag2",
+    "Market_Volume_roll3",
+    "Market_Volume_growth",
+    "Global_CO2_lag1",
+    "Renewable_Electricity_Share_lag1",
+    "Renewable_Production_lag1",
+    "Global_GDP_Growth_lag1"
+  ],
+  "validation": "expanding-window walk-forward (chronological)",
+  "min_train_size": 12,
+  "training_period": {
+    "start_year": 2005,
+    "end_year": 2024
+  },
+  "frequency": "annual",
+  "n_observations": 20,
+  "walk_forward_metrics": {
+    "Naive_LastValue": {
+      "MAE": 563.3333,
+      "RMSE": 807.7848,
+      "R2": -0.3146,
+      "MAPE": 54.7487,
+      "n": 6
+    },
+    "MovingAverage_3": {
+      "MAE": 806.3889,
+      "RMSE": 963.6093,
+      "R2": -0.8706,
+      "MAPE": 85.8511,
+      "n": 6
+    },
+    "LinearRegression": {
+      "MAE": 1592.25,
+      "RMSE": 2148.215,
+      "R2": -8.297,
+      "MAPE": 287.2459,
+      "n": 6
+    },
+    "RandomForest": {
+      "MAE": 659.2717,
+      "RMSE": 837.5441,
+      "R2": -0.4132,
+      "MAPE": 60.7665,
+      "n": 6
+    },
+    "XGBoost": {
+      "MAE": 549.7181,
+      "RMSE": 818.8822,
+      "R2": -0.3509,
+      "MAPE": 55.9396,
+      "n": 6
+    }
+  },
+  "training_rows": 18,
+  "horizon_years": 3,
+  "leakage_controls": [
+    "No random train/test split",
+    "Lag and rolling statistics use shift(1) or greater",
+    "Macro indicators are lagged one year after last-known forward-fill",
+    "Walk-forward trains only on years strictly before the test year"
+  ]
+}

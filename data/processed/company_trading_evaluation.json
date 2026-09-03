@@ -1,0 +1,109 @@
+{
+  "selected_model": "LogisticRegression",
+  "metrics": {
+    "Accuracy": 0.517,
+    "Precision": 0.5209,
+    "Recall": 0.5652,
+    "F1": 0.5422,
+    "Precision_weighted": 0.5166,
+    "Recall_weighted": 0.517,
+    "F1_weighted": 0.5159,
+    "ROC_AUC": 0.5168,
+    "confusion_matrix": [
+      [
+        231,
+        263
+      ],
+      [
+        220,
+        286
+      ]
+    ]
+  },
+  "all_model_metrics": {
+    "LogisticRegression": {
+      "Accuracy": 0.517,
+      "Precision": 0.5209,
+      "Recall": 0.5652,
+      "F1": 0.5422,
+      "Precision_weighted": 0.5166,
+      "Recall_weighted": 0.517,
+      "F1_weighted": 0.5159,
+      "ROC_AUC": 0.5168,
+      "confusion_matrix": [
+        [
+          231,
+          263
+        ],
+        [
+          220,
+          286
+        ]
+      ]
+    },
+    "RandomForest": {
+      "Accuracy": 0.518,
+      "Precision": 0.5226,
+      "Recall": 0.5474,
+      "F1": 0.5347,
+      "Precision_weighted": 0.5178,
+      "Recall_weighted": 0.518,
+      "F1_weighted": 0.5176,
+      "ROC_AUC": 0.5039,
+      "confusion_matrix": [
+        [
+          241,
+          253
+        ],
+        [
+          229,
+          277
+        ]
+      ]
+    },
+    "XGBoost": {
+      "Accuracy": 0.5,
+      "Precision": 0.5058,
+      "Recall": 0.5178,
+      "F1": 0.5117,
+      "Precision_weighted": 0.4999,
+      "Recall_weighted": 0.5,
+      "F1_weighted": 0.4999,
+      "ROC_AUC": 0.5001,
+      "confusion_matrix": [
+        [
+          238,
+          256
+        ],
+        [
+          244,
+          262
+        ]
+      ]
+    }
+  },
+  "class_balance": {
+    "n_train": 4000,
+    "n_test": 1000,
+    "train_balance": {
+      "1": 2025,
+      "0": 1975
+    },
+    "test_balance": {
+      "1": 506,
+      "0": 494
+    },
+    "full_balance": {
+      "1": 2531,
+      "0": 2469
+    }
+  },
+  "excluded_columns": [
+    "Company_ID",
+    "Date",
+    "Optimization_Scenario",
+    "Carbon_Cost_Savings_USD",
+    "Transaction_Type",
+    "Credits_Traded_tCO2"
+  ]
+}
