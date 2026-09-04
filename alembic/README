@@ -1,0 +1,10 @@
+Generic single-database configuration for Carbon Market Intelligence.
+
+To create a new migration:
+    alembic revision --autogenerate -m "description"
+
+To upgrade to latest:
+    alembic upgrade head
+
+To downgrade one version:
+    alembic downgrade -1

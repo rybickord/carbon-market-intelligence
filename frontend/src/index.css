@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply text-ivory;
+    background-color: #020C09;
+  }
+  
+  :root {
+    --background: #020C09;
+    --surface: #0D1715;
+    --surface-elevated: #111C19;
+    --text-primary: #F4F1E8;
+    --text-secondary: #AEB5B1;
+    --text-muted: #78827E;
+    --accent-cyan: #00C8C8;
+    --accent-blue: #1A3FD6;
+    --border: rgba(255,255,255,0.16);
+    --border-strong: rgba(255,255,255,0.28);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-200 shadow-lg;
+    background-color: #00C8C8;
+    color: #020C09;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1AD6D6;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 font-medium rounded-lg transition-all duration-200;
+    background-color: transparent;
+    color: #F4F1E8;
+    border: 1px solid rgba(255,255,255,0.28);
+  }
+  
+  .btn-secondary:hover {
+    background-color: #0D1715;
+  }
+  
+  .card {
+    @apply rounded-xl shadow-soft;
+    background-color: #111C19;
+    border: 1px solid rgba(255,255,255,0.16);
+  }
+  
+  .card-hover {
+    @apply card transition-all duration-200;
+  }
+  
+  .card-hover:hover {
+    border-color: rgba(255,255,255,0.28);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4), 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
