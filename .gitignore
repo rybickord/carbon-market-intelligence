@@ -30,5 +30,14 @@ dist/
 *.log
 
 # Project raw datasets
-
 data/raw/
+
+# Temporary experiment files and scripts
+*test_database.py
+assess_country_enhancements.py
+audit_new_datasets.py
+
+# Experimental processed data (baseline/enhanced comparison)
+data/processed/*baseline*.csv
+data/processed/*enhanced*.csv
+data/processed/model_comparison_results.json
