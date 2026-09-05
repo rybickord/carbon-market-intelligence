@@ -198,13 +198,7 @@ export default function ScenarioSimulator() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Market Value */}
             <div className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg border-2 border-blue-200">
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-sm text-gray-600">Market Value</div>
-                <div className="flex items-center text-xs text-gray-500">
-                  <span className="mr-1">📊</span>
-                  {result.model_info.market_value_model}
-                </div>
-              </div>
+              <div className="text-sm text-gray-600 mb-1">Market Value</div>
               <div className="flex items-end justify-between">
                 <div>
                   <div className="text-2xl font-bold text-gray-900">
@@ -223,22 +217,11 @@ export default function ScenarioSimulator() {
                   </div>
                 </div>
               </div>
-              {result.model_info && !result.model_info.market_value_sensitive_to_scenario && (
-                <div className="mt-3 p-2 bg-blue-100 rounded text-xs text-blue-700">
-                  💡 This model uses the last known value - scenario changes do not affect the prediction
-                </div>
-              )}
             </div>
 
             {/* Market Volume */}
             <div className="p-6 bg-gradient-to-br from-emerald-50 to-green-50 rounded-lg border-2 border-emerald-200">
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-sm text-gray-600">Market Volume</div>
-                <div className="flex items-center text-xs text-gray-500">
-                  <span className="mr-1">🤖</span>
-                  {result.model_info.market_volume_model}
-                </div>
-              </div>
+              <div className="text-sm text-gray-600 mb-1">Market Volume</div>
               <div className="flex items-end justify-between">
                 <div>
                   <div className="text-2xl font-bold text-gray-900">
@@ -257,40 +240,7 @@ export default function ScenarioSimulator() {
                   </div>
                 </div>
               </div>
-              {result.model_info && result.model_info.market_volume_sensitive_to_scenario && (
-                <div className="mt-3 p-2 bg-emerald-100 rounded text-xs text-emerald-700">
-                  📈 This model responds to CO₂, renewable energy, and GDP changes
-                </div>
-              )}
             </div>
-          </div>
-
-          {/* Model Behavior Explanation */}
-          <div className="p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg mb-4 border border-gray-200">
-            <div className="text-sm font-semibold text-gray-700 mb-2">💡 Model Behavior</div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-600">
-              <div>
-                <div className="font-medium text-gray-700 mb-1">Market Value Model:</div>
-                <div className="space-y-1">
-                  <div>• Uses: {result.model_info.market_value_model}</div>
-                  <div>• Sensitive to scenarios: {result.model_info.market_value_sensitive_to_scenario ? '✅ Yes' : '❌ No'}</div>
-                  <div>• Responds to: {result.model_info.features_affecting_value ? result.model_info.features_affecting_value.join(', ') : 'Last known value only'}</div>
-                </div>
-              </div>
-              <div>
-                <div className="font-medium text-gray-700 mb-1">Market Volume Model:</div>
-                <div className="space-y-1">
-                  <div>• Uses: {result.model_info.market_volume_model}</div>
-                  <div>• Sensitive to scenarios: {result.model_info.market_volume_sensitive_to_scenario ? '✅ Yes' : '❌ No'}</div>
-                  <div>• Responds to: {result.model_info.features_affecting_volume ? result.model_info.features_affecting_volume.join(', ') : 'Last known value only'}</div>
-                </div>
-              </div>
-            </div>
-            {result.model_info && !result.model_info.carbon_price_directly_modeled && (
-              <div className="mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-700">
-                ⚠️ <strong>Carbon Price Note:</strong> Carbon price changes are shown for context but do not directly influence ML predictions in the current models.
-              </div>
-            )}
           </div>
 
           {/* Model Info */}
