@@ -282,7 +282,16 @@ class ScenarioSimulator:
         
         # Add warnings for interpretation
         if self.value_meta["selected_model"] == "Naive_LastValue":
-            warnings.append("Market_Value uses Naive_LastValue baseline - scenario changes may not affect prediction")
+            warnings.append("Market Value uses Naive_LastValue model - predictions are scenario-insensitive (always equal to last known value)")
+        
+        if self.volume_meta["selected_model"] == "Naive_LastValue":
+            warnings.append("Market Volume uses Naive_LastValue model - predictions are scenario-insensitive")
+        elif self.volume_meta["selected_model"] == "XGBoost":
+            if abs(volume_change_pct) < 0.1:
+                warnings.append("Market Volume shows minimal response to scenario - current changes may be too small to detect")
+        
+        if scenario_params.carbon_price_change_pct != 0:
+            warnings.append("Carbon price change does not directly affect ML predictions - this parameter is provided for context only")
         
         if abs(value_change_pct) > 100:
             warnings.append("Scenario shows extreme value change (>100%) - interpret with caution")
@@ -290,12 +299,31 @@ class ScenarioSimulator:
         if abs(volume_change_pct) > 100:
             warnings.append("Scenario shows extreme volume change (>100%) - interpret with caution")
         
+        # Determine model sensitivity to scenarios
+        value_sensitive = self.value_meta["selected_model"] not in ["Naive_LastValue", "MovingAverage_3"]
+        volume_sensitive = self.volume_meta["selected_model"] not in ["Naive_LastValue", "MovingAverage_3"]
+        
         # Prepare model info
         model_info = {
             "market_value_model": self.value_meta["selected_model"],
             "market_volume_model": self.volume_meta["selected_model"],
+            "market_value_sensitive_to_scenario": value_sensitive,
+            "market_volume_sensitive_to_scenario": volume_sensitive,
             "baseline_year": last_known["year"],
             "prediction_year": last_known["year"] + 1,
+            "carbon_price_directly_modeled": False,  # Important: clarify this is not a direct input
+            "features_affecting_volume": [
+                "CO2 emissions (lagged)", 
+                "Renewable electricity share (lagged)",
+                "GDP growth (lagged)",
+                "Historical market values/volumes"
+            ] if volume_sensitive else ["Last known market volume only"],
+            "features_affecting_value": [
+                "CO2 emissions (lagged)", 
+                "Renewable electricity share (lagged)", 
+                "GDP growth (lagged)",
+                "Historical market values/volumes"
+            ] if value_sensitive else ["Last known market value only"],
             "limitations": [
                 "Predictions are based on historical patterns and may not capture future structural changes",
                 "Scenario changes are applied to lagged features as the model uses last-known values",
