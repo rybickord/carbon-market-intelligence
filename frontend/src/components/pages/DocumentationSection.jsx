@@ -1,25 +1,25 @@
 export default function DocumentationSection() {
   return (
-    <section id="documentation" className="py-24 bg-carbon">
-      <div className="section-container space-y-16">
+    <section id="documentation" className="py-10 sm:py-16 lg:py-24 bg-carbon">
+      <div className="section-container space-y-10 sm:space-y-16">
         {/* Section Header */}
         <div className="max-w-4xl">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-cyan/10 border border-cyan/20 rounded-full mb-6">
-            <span className="text-sm text-cyan font-medium uppercase tracking-wider">Documentation</span>
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-cyan/10 border border-cyan/20 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm text-cyan font-medium uppercase tracking-wider">Documentation</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-ivory mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ivory mb-3 sm:mb-4">
             Platform Documentation
           </h2>
-          <p className="text-xl text-ivory-secondary">
+          <p className="text-base sm:text-xl text-ivory-secondary">
             Comprehensive guide to using the Carbon Market Intelligence platform for market analysis, 
             forecasting, and scenario modeling.
           </p>
         </div>
 
         {/* Documentation Sections */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {/* Getting Started */}
-          <div className="bg-carbon-elevated rounded-xl border border-white/16 p-8 space-y-6">
+          <div className="bg-carbon-elevated rounded-xl border border-white/16 p-5 sm:p-8 space-y-4 sm:space-y-6">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-cyan/20 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-cyan" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +41,7 @@ export default function DocumentationSection() {
           </div>
 
           {/* API Reference */}
-          <div className="bg-carbon-elevated rounded-xl border border-white/16 p-8 space-y-6">
+          <div className="bg-carbon-elevated rounded-xl border border-white/16 p-5 sm:p-8 space-y-4 sm:space-y-6">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-royal/20 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-royal" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,28 +54,28 @@ export default function DocumentationSection() {
               <div>
                 <h4 className="font-semibold text-ivory mb-2">Market Endpoints</h4>
                 <ul className="text-sm space-y-1">
-                  <li><code className="text-cyan">/api/market/overview</code></li>
-                  <li><code className="text-cyan">/api/market/history</code></li>
-                  <li><code className="text-cyan">/api/market/forecast</code></li>
-                  <li><code className="text-cyan">/api/market/metrics</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/market/overview</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/market/history</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/market/forecast</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/market/metrics</code></li>
                 </ul>
               </div>
               <div>
                 <h4 className="font-semibold text-ivory mb-2">Country & Trading</h4>
                 <ul className="text-sm space-y-1">
-                  <li><code className="text-cyan">/api/countries</code></li>
-                  <li><code className="text-cyan">/api/countries/risk</code></li>
-                  <li><code className="text-cyan">/api/countries/opportunity</code></li>
-                  <li><code className="text-cyan">/api/trading/model</code></li>
-                  <li><code className="text-cyan">/api/trading/predict</code></li>
-                  <li><code className="text-cyan">/api/scenario/simulate</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/countries</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/countries/risk</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/countries/opportunity</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/trading/model</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/trading/predict</code></li>
+                  <li><code className="text-cyan text-xs break-all">/api/scenario/simulate</code></li>
                 </ul>
               </div>
             </div>
           </div>
 
           {/* Models & Data */}
-          <div className="bg-carbon-elevated rounded-xl border border-white/16 p-8 space-y-6">
+          <div className="bg-carbon-elevated rounded-xl border border-white/16 p-5 sm:p-8 space-y-4 sm:space-y-6">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-gold" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -98,9 +98,9 @@ export default function DocumentationSection() {
         </div>
 
         {/* Technical Details */}
-        <div className="bg-carbon-elevated rounded-xl border border-white/16 p-8">
-          <h3 className="text-2xl font-bold text-ivory mb-6">Technical Architecture</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-carbon-elevated rounded-xl border border-white/16 p-5 sm:p-8">
+          <h3 className="text-xl sm:text-2xl font-bold text-ivory mb-4 sm:mb-6">Technical Architecture</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             <div className="space-y-4">
               <h4 className="text-lg font-semibold text-ivory">Frontend Stack</h4>
               <ul className="space-y-2 text-ivory-secondary">

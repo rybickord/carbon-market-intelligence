@@ -24,22 +24,34 @@ export default function Navigation({ activeSection, onNavigate }) {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'bg-carbon/95 backdrop-blur-xl border-b border-white/16 shadow-2xl' 
+          ? 'glass-surface backdrop-blur-xl border-b border-white/12 shadow-2xl' 
           : 'bg-transparent'
       }`}
     >
       <div className="section-container">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo / Brand */}
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-cyan to-royal rounded-lg flex items-center justify-center shadow-lg">
-              <span className="text-ivory font-bold text-xl">C</span>
+        {/*
+          Navbar row heights:
+            mobile  (<640px):  h-20  = 80px
+            sm (640–1023px):   h-24  = 96px
+            lg (1024px+):      h-28  = 112px  (desktop, unchanged)
+        */}
+        <div className="flex items-center justify-between h-20 sm:h-24 lg:h-28">
+          {/* Logo / Brand with micro-interaction */}
+          <div className="flex items-center interactive">
+            {/* Responsive logo container — see .logo-container in index.css */}
+            <div className="logo-container flex-shrink-0 overflow-hidden">
+              <img
+                src="/Logo/Print_Transparent.svg"
+                alt="Carbon Intelligence"
+                className="logo-img block"
+              />
             </div>
-            <div>
-              <h1 className="text-lg font-bold text-ivory">Carbon Intelligence</h1>
-              <p className="text-xs text-ivory-muted hidden sm:block">Market Prediction Platform</p>
+            {/* Divider + tagline — desktop only */}
+            <div className="hidden lg:flex items-center ml-3">
+              <div className="w-px h-10 bg-white/20 mr-3" />
+              <p className="text-xs text-ivory-muted leading-none whitespace-nowrap">Market Prediction Platform</p>
             </div>
           </div>
 
@@ -49,10 +61,10 @@ export default function Navigation({ activeSection, onNavigate }) {
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/20 ${
+                className={`nav-link px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                   activeSection === item.id
-                    ? 'bg-cyan/15 text-cyan border border-cyan/30'
-                    : 'text-ivory-secondary hover:text-ivory hover:bg-carbon-surface'
+                    ? 'nav-link active text-cyan bg-cyan/10'
+                    : 'text-ivory-secondary hover:text-ivory hover:bg-white/5'
                 }`}
               >
                 {item.label}
@@ -60,26 +72,26 @@ export default function Navigation({ activeSection, onNavigate }) {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-ivory-secondary hover:text-ivory focus:outline-none focus:ring-2 focus:ring-white/20 rounded-lg"
+            className="lg:hidden interactive p-2 rounded-lg text-ivory-secondary hover:text-ivory hover:bg-white/5"
           >
-            <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-              {mobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <div className="space-y-1">
+              <div className={`w-5 h-0.5 bg-current transition-transform duration-200 ${mobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+              <div className={`w-5 h-0.5 bg-current transition-opacity duration-200 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
+              <div className={`w-5 h-0.5 bg-current transition-transform duration-200 ${mobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+            </div>
           </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-carbon-surface/98 backdrop-blur-xl border-t border-white/16">
-          <div className="section-container py-4 space-y-2">
+        {/* Mobile Navigation */}
+        <div className={`lg:hidden transition-all duration-300 ease-out ${
+          mobileMenuOpen 
+            ? 'max-h-96 opacity-100 pb-4' 
+            : 'max-h-0 opacity-0 overflow-hidden'
+        }`}>
+          <div className="glass-card mt-2 p-2 space-y-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -87,10 +99,10 @@ export default function Navigation({ activeSection, onNavigate }) {
                   onNavigate(item.id)
                   setMobileMenuOpen(false)
                 }}
-                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-white/20 ${
+                className={`w-full text-left px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                   activeSection === item.id
-                    ? 'bg-cyan/15 text-cyan'
-                    : 'text-ivory-secondary hover:bg-carbon-elevated hover:text-ivory'
+                    ? 'text-cyan bg-cyan/10 border-l-2 border-cyan'
+                    : 'text-ivory-secondary hover:text-ivory hover:bg-white/5'
                 }`}
               >
                 {item.label}
@@ -98,7 +110,7 @@ export default function Navigation({ activeSection, onNavigate }) {
             ))}
           </div>
         </div>
-      )}
+      </div>
     </nav>
   )
 }

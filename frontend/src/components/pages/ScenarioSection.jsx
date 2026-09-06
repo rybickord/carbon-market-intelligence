@@ -66,16 +66,16 @@ export default function ScenarioSection() {
   ]
 
   return (
-    <section id="scenario" className="py-24 bg-carbon-dark">
-      <div className="section-container space-y-16">
+    <section id="scenario" className="py-10 sm:py-16 lg:py-24 bg-carbon-dark">
+      <div className="section-container space-y-10 sm:space-y-16">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-scenario-accent/10 border border-scenario-accent/20 rounded-full mb-6">
-            <span className="text-sm text-scenario-accent font-medium uppercase tracking-wider">Scenario Lab</span>
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-scenario-accent/10 border border-scenario-accent/20 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm text-scenario-accent font-medium uppercase tracking-wider">Scenario Lab</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-ivory mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ivory mb-3 sm:mb-4">
             What-If Analysis
           </h2>
-          <p className="text-xl text-ivory-secondary">
+          <p className="text-base sm:text-xl text-ivory-secondary">
             Interactive scenario modeling to explore how market drivers affect carbon credit 
             market outcomes. Adjust key parameters and see predicted impacts in real-time.
           </p>
@@ -83,49 +83,50 @@ export default function ScenarioSection() {
 
         {error && <ErrorMessage message={error} />}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Controls */}
-          <div className="bg-carbon-dark-elevated rounded-xl border border-ivory-muted/10 p-8 space-y-8">
-            <h3 className="text-2xl font-bold text-ivory">Scenario Parameters</h3>
-            <div className="p-4 bg-carbon-dark-secondary rounded-lg mb-6">
+        <div className="card-grid grid-cols-1 lg:grid-cols-2">
+          {/* Enhanced Controls with glassmorphism */}
+          <div className="glass-card p-6 sm:p-8 space-y-6 sm:space-y-8">
+            <h3 className="mobile-subheading text-ivory">Scenario Parameters</h3>
+            <div className="glass-surface p-4 rounded-lg mb-6">
               <div className="text-sm text-ivory-muted mb-2">Parameter Effects on Models</div>
-              <div className="text-xs text-ivory-secondary space-y-1">
+              <div className="text-xs text-ivory-secondary space-y-1 mobile-body">
                 <div><strong>Market Value:</strong> Uses Naive_LastValue and does not directly respond to scenario parameters</div>
-                <div><strong>Market Volume:</strong> Uses XGBoost - responds to Renewables, GDP, CO₂</div>
+                <div><strong>Market Volume:</strong> Uses Enhanced_Scenario_Model - responds to Renewables, GDP, CO₂</div>
                 <div><strong>Carbon Price:</strong> Not directly modeled in current forecasting models</div>
               </div>
             </div>
-            {sliders.map((slider) => (
-              <div key={slider.key} className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium text-ivory-secondary">
-                    {slider.label}
-                    {slider.key === 'carbon_price_change' && (
-                      <span className="ml-2 text-xs text-yellow-400" title="Not directly modeled in current forecasting models">⚠️</span>
-                    )}
-                  </label>
-                  <span className={`text-lg font-bold ${
-                    params[slider.key] > 0 ? 'text-positive' :
-                    params[slider.key] < 0 ? 'text-negative' :
-                    'text-ivory-muted'
-                  }`}>
-                    {params[slider.key] > 0 ? '+' : ''}{params[slider.key]}{slider.unit}
-                  </span>
-                </div>
-                <div className="relative">
-                  <input
-                    type="range"
-                    min={slider.min}
-                    max={slider.max}
-                    step={1}
-                    value={params[slider.key]}
-                    onChange={(e) => {
-                      const newValue = Number(e.target.value)
-                      setParams(prev => ({ ...prev, [slider.key]: newValue }))
-                      // Clear previous results when parameters change
-                      setResult(null)
-                      setError(null)
-                    }}
+            <div className="space-y-6 sm:space-y-8">
+              {sliders.map((slider) => (
+                <div key={slider.key} className="space-y-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <label className="text-xs sm:text-sm font-medium text-ivory-secondary leading-tight">
+                      {slider.label}
+                      {slider.key === 'carbon_price_change' && (
+                        <span className="ml-1 text-xs text-warning" title="Not directly modeled in current forecasting models">⚠️</span>
+                      )}
+                    </label>
+                    <span className={`text-base sm:text-lg font-bold flex-shrink-0 transition-colors ${
+                      params[slider.key] > 0 ? 'text-positive' :
+                      params[slider.key] < 0 ? 'text-negative' :
+                      'text-ivory-muted'
+                    }`}>
+                      {params[slider.key] > 0 ? '+' : ''}{params[slider.key]}{slider.unit}
+                    </span>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="range"
+                      min={slider.min}
+                      max={slider.max}
+                      step={1}
+                      value={params[slider.key]}
+                      onChange={(e) => {
+                        const newValue = Number(e.target.value)
+                        setParams(prev => ({ ...prev, [slider.key]: newValue }))
+                        // Clear previous results when parameters change
+                        setResult(null)
+                        setError(null)
+                      }}
                     className="w-full h-2 bg-carbon-dark-secondary rounded-lg appearance-none cursor-pointer accent-scenario-accent"
                   />
                   {/* 0% baseline marker */}
@@ -152,27 +153,28 @@ export default function ScenarioSection() {
                 </div>
               </div>
             ))}
-            <div className="flex space-x-4">
+            <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
               <button 
                 onClick={handleSimulate}
                 disabled={loading}
-                className="flex-1 btn-primary text-lg py-4"
+                className="flex-1 btn-primary text-base sm:text-lg py-3 sm:py-4 interactive"
               >
                 {loading ? 'Simulating...' : 'Run Simulation'}
               </button>
               <button
                 onClick={handleReset}
                 disabled={loading}
-                className="px-6 py-4 border-2 border-ivory-muted/30 text-ivory-secondary rounded-lg hover:bg-ivory-muted/10 transition-colors font-medium"
+                className="px-6 py-3 sm:py-4 btn-secondary interactive"
               >
                 Reset
               </button>
             </div>
           </div>
+          </div>
 
-          {/* Results */}
-          <div className="bg-carbon-dark-elevated rounded-xl border border-ivory-muted/10 p-8 space-y-6">
-            <h3 className="text-2xl font-bold text-ivory">Predicted Outcomes</h3>
+          {/* Enhanced Results with glassmorphism */}
+          <div className="glass-card p-6 sm:p-8 space-y-6">
+            <h3 className="mobile-subheading text-ivory">Predicted Outcomes</h3>
             {loading ? (
               <LoadingSpinner message="Running scenario..." />
             ) : result ? (

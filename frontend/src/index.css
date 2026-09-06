@@ -9,6 +9,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
   
   body {
@@ -27,62 +28,303 @@
     --accent-blue: #1A3FD6;
     --border: rgba(255,255,255,0.16);
     --border-strong: rgba(255,255,255,0.28);
+    --glass-bg: rgba(17, 28, 25, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
 }
 
 @layer components {
+  /* Enhanced button styles with micro-interactions */
   .btn-primary {
-    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-200 shadow-lg;
+    @apply px-6 py-3 font-semibold rounded-lg shadow-lg;
     background-color: #00C8C8;
     color: #020C09;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
   }
   
   .btn-primary:hover {
     background-color: #1AD6D6;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 40px -8px rgba(0, 200, 200, 0.3);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
   }
   
   .btn-secondary {
-    @apply px-6 py-3 font-medium rounded-lg transition-all duration-200;
+    @apply px-6 py-3 font-medium rounded-lg;
     background-color: transparent;
     color: #F4F1E8;
     border: 1px solid rgba(255,255,255,0.28);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
   }
   
   .btn-secondary:hover {
-    background-color: #0D1715;
+    background-color: rgba(13, 23, 21, 0.8);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.3);
   }
   
+  .btn-secondary:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+  }
+  
+  /* Glassmorphism card styles */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glass-card-hover {
+    @apply glass-card;
+    cursor: pointer;
+  }
+  
+  .glass-card-hover:hover {
+    background: rgba(17, 28, 25, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4), 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Premium surface for major sections */
+  .glass-surface {
+    background: rgba(13, 23, 21, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Legacy card support with glass enhancement */
   .card {
-    @apply rounded-xl shadow-soft;
-    background-color: #111C19;
-    border: 1px solid rgba(255,255,255,0.16);
+    @apply glass-card;
   }
   
   .card-hover {
-    @apply card transition-all duration-200;
+    @apply glass-card-hover;
   }
   
-  .card-hover:hover {
-    border-color: rgba(255,255,255,0.28);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4), 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  /* Navigation micro-interactions */
+  .nav-link {
+    @apply transition-all duration-200 ease-out;
+    transform: translateY(0);
   }
   
+  .nav-link:hover {
+    transform: translateY(-1px);
+  }
+  
+  .nav-link.active {
+    position: relative;
+  }
+  
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00C8C8, #1AD6D6);
+    border-radius: 1px;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      width: 0;
+      left: 50%;
+    }
+    to {
+      width: 100%;
+      left: 0;
+    }
+  }
+  
+  /* Interactive elements micro-animations */
+  .interactive {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .interactive:hover {
+    transform: translateY(-1px);
+  }
+  
+  .interactive:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+  }
+  
+  /* Slider enhancements */
+  .slider-track {
+    transition: all 0.2s ease-out;
+  }
+  
+  .slider-track:hover {
+    transform: scaleY(1.2);
+  }
+  
+  /* Mobile-optimized spacing */
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+  
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+  
+  .card-grid {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  /* Mobile typography improvements */
+  .mobile-heading {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight;
+  }
+  
+  .mobile-subheading {
+    @apply text-lg sm:text-xl lg:text-2xl font-semibold;
+  }
+  
+  .mobile-body {
+    @apply text-sm sm:text-base leading-relaxed;
+  }
+  
+  /* Prevent horizontal overflow */
+  .overflow-safe {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
-}
-
+/* code font */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* ─── Responsive logo — used by Navigation.jsx ──────────────────────────────
+   SVG canvas is 1280×1024.  rendered-height = width × (1024/1280)
+   CARBON top-edge  ≈ canvas-y 154  →  rendered-y = 154/1024 × rendered-height
+   INTEL  bot-edge  ≈ canvas-y 716  →  rendered-y = 716/1024 × rendered-height
+   content-height = (716-154)/1024 × rendered-height  ≈ 0.549 × rendered-height
+   marginTop = -(154/1024 × rendered-height) + 4px   (4px breathing room at top)
+
+   mobile  (<640px):  width=148  rendered-h=118.4  content-h=65  margin=-(17.8)+4=-14px  container=65+8=73 → use 70px
+   sm      (640px+):  width=175  rendered-h=140    content-h=77  margin=-(21.1)+4=-17px  container=77+8=85 → use 82px
+   lg      (1024px+): width=200  rendered-h=160    content-h=88  margin=-(24.0)+4=-20px  container=88+8=96 → use 93px
+   (prev value was -15px/101px — close, this is slightly more precise)
+──────────────────────────────────────────────────────────────────────────── */
+.logo-container {
+  width: 148px;
+  height: 70px;
+}
+.logo-img {
+  width: 148px;
+  height: auto;
+  margin-top: -14px;
+}
+
+@media (min-width: 640px) {
+  .logo-container {
+    width: 175px;
+    height: 82px;
+  }
+  .logo-img {
+    width: 175px;
+    margin-top: -17px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo-container {
+    width: 200px;
+    height: 93px;
+  }
+  .logo-img {
+    width: 200px;
+    margin-top: -20px;
+  }
+}
+
+/* ─── Global mobile fixes ────────────────────────────────────────────────── */
+
+/* Prevent ANY element from causing horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* iOS tap highlight removal + better touch behaviour on interactive elements */
+button, select, input, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Make range inputs easier to touch on mobile */
+input[type="range"] {
+  min-height: 28px;
+  cursor: pointer;
+}
+
+/* Code blocks — wrap rather than force horizontal scroll */
+code {
+  word-break: break-all;
+  white-space: normal;
+}
+
+/* ─── Mobile-specific improvements (<640px) ──────────────────────────────── */
+@media (max-width: 640px) {
+  .section-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .glass-card {
+    border-radius: 0.75rem;
+  }
+
+  /* Charts: allow horizontal scroll only if Plotly forces it; never let them
+     blow out the page layout */
+  .chart-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  /* Buttons full-width on mobile when inside a flex-col wrapper */
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Mobile card stacking */
+  .mobile-stack {
+    @apply space-y-4;
+  }
+  .mobile-stack > * {
+    @apply w-full;
+  }
+
+  /* Reduce large fixed spacing utilities on mobile */
+  .space-y-16 {
+    row-gap: 2.5rem !important; /* 40px instead of 64px */
+  }
+  .space-y-12 {
+    row-gap: 2rem !important;   /* 32px instead of 48px */
+  }
 }

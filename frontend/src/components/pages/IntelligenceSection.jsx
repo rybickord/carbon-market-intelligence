@@ -63,17 +63,17 @@ export default function IntelligenceSection() {
   ]
 
   return (
-    <section id="intelligence" className="py-24 bg-carbon-dark-secondary">
-      <div className="section-container space-y-16">
+    <section id="intelligence" className="py-10 sm:py-16 lg:py-24 bg-carbon-dark-secondary">
+      <div className="section-container space-y-10 sm:space-y-16">
         {/* Section Header */}
         <div className="max-w-3xl">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-gold/10 border border-gold/20 rounded-full mb-6">
-            <span className="text-sm text-gold font-medium uppercase tracking-wider">Market Intelligence</span>
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gold/10 border border-gold/20 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm text-gold font-medium uppercase tracking-wider">Market Intelligence</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-ivory mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ivory mb-3 sm:mb-4">
             Understanding Market Drivers
           </h2>
-          <p className="text-xl text-ivory-secondary">
+          <p className="text-base sm:text-xl text-ivory-secondary">
             The carbon credit market is shaped by interconnected forces spanning policy, economics, 
             technology, and corporate strategy. Our intelligence platform tracks these key drivers 
             to explain market behavior and inform predictions.
@@ -81,9 +81,9 @@ export default function IntelligenceSection() {
         </div>
 
         {/* Drivers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {drivers.map((driver, idx) => (
-            <div key={idx} className="bg-carbon-dark-elevated rounded-xl border border-ivory-muted/10 p-6 space-y-4 hover:border-ivory-muted/20 transition-all duration-200 group">
+            <div key={idx} className="bg-carbon-dark-elevated rounded-xl border border-ivory-muted/10 p-5 sm:p-6 space-y-3 sm:space-y-4 hover:border-ivory-muted/20 transition-all duration-200 group">
               <div className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors ${
                 driver.color === 'mint' ? 'bg-mint/10 text-mint' :
                 driver.color === 'gold' ? 'bg-gold/10 text-gold' :
@@ -104,9 +104,9 @@ export default function IntelligenceSection() {
         </div>
 
         {/* Key Insights */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16">
-          <div className="bg-carbon-dark-elevated rounded-xl border border-mint/20 border-l-2 border-l-mint p-8 space-y-4">
-            <h3 className="text-2xl font-bold text-ivory">Why Markets Move</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          <div className="bg-carbon-dark-elevated rounded-xl border border-mint/20 border-l-2 border-l-mint p-5 sm:p-8 space-y-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-ivory">Why Markets Move</h3>
             <div className="space-y-3 text-ivory-secondary leading-relaxed">
               <p>
                 Carbon market dynamics reflect the intersection of environmental urgency, 
@@ -121,8 +121,8 @@ export default function IntelligenceSection() {
             </div>
           </div>
 
-          <div className="bg-carbon-dark-elevated rounded-xl border border-data-blue/20 border-l-2 border-l-data-blue p-8 space-y-4">
-            <h3 className="text-2xl font-bold text-ivory">Data-Driven Insights</h3>
+          <div className="bg-carbon-dark-elevated rounded-xl border border-data-blue/20 border-l-2 border-l-data-blue p-5 sm:p-8 space-y-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-ivory">Data-Driven Insights</h3>
             <div className="space-y-3 text-ivory-secondary leading-relaxed">
               <p>
                 Our platform analyzes historical relationships between market drivers and carbon 

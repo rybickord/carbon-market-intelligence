@@ -36,6 +36,17 @@ data/raw/
 *test_database.py
 assess_country_enhancements.py
 audit_new_datasets.py
+# Debug/investigation scripts created during development
+api_test.py
+debug_renewable_bug.py
+detailed_debug.py
+diagnostic.py
+market_value_review.py
+minimal_test.py
+quick_debug.py
+test_api_bug.py
+test_scenario.py
+test_scenario_fix.py
 
 # Experimental processed data (baseline/enhanced comparison)
 data/processed/*baseline*.csv

@@ -44,24 +44,24 @@ export default function ForecastSection() {
   const volumeModel = metrics.Market_Volume?.selected_model || 'N/A'
 
   return (
-    <section id="forecast" className="py-24 bg-royal">
-      <div className="section-container space-y-16">
+    <section id="forecast" className="py-10 sm:py-16 lg:py-24 bg-royal">
+      <div className="section-container space-y-10 sm:space-y-16">
         {/* Section Header */}
         <div className="max-w-3xl">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-6">
-            <span className="text-sm text-ivory font-medium uppercase tracking-wider">Predictive Analytics</span>
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/10 border border-white/20 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm text-ivory font-medium uppercase tracking-wider">Predictive Analytics</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-ivory mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ivory mb-3 sm:mb-4">
             Market Forecast
           </h2>
-          <p className="text-xl text-ivory-secondary">
+          <p className="text-base sm:text-xl text-ivory-secondary">
             ML-powered predictions for global carbon market value and volume based on 
             historical trends, market drivers, and validated forecast models.
           </p>
         </div>
 
         {/* Model Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div className="bg-white/5 rounded-xl border border-white/16 p-6 space-y-4 hover:border-white/28 transition-all duration-200">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-ivory">Market Value Forecast</h3>
@@ -133,9 +133,9 @@ export default function ForecastSection() {
 
         {/* Forecast Charts */}
         <div className="space-y-6">
-          <div className="bg-white/5 rounded-xl border border-white/16 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-ivory">Market Value: Historical & Forecast</h3>
+          <div className="bg-white/5 rounded-xl border border-white/16 p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 sm:mb-6">
+              <h3 className="text-base sm:text-xl font-semibold text-ivory">Market Value: Historical &amp; Forecast</h3>
               <div className="flex items-center space-x-4 text-sm">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-ivory rounded-full"></div>
@@ -155,8 +155,8 @@ export default function ForecastSection() {
                   type: 'scatter',
                   mode: 'lines+markers',
                   name: 'Historical',
-                  marker: { color: '#F4F1E8', size: 7 },
-                  line: { color: '#F4F1E8', width: 3 },
+                  marker: { color: '#F4F1E8', size: 6 },
+                  line: { color: '#F4F1E8', width: 2 },
                 },
                 {
                   x: predictions.map(d => d.year),
@@ -164,43 +164,41 @@ export default function ForecastSection() {
                   type: 'scatter',
                   mode: 'lines+markers',
                   name: 'Forecast',
-                  marker: { color: '#00C8C8', size: 7 },
-                  line: { color: '#00C8C8', width: 3, dash: 'dash' },
+                  marker: { color: '#00C8C8', size: 6 },
+                  line: { color: '#00C8C8', width: 2, dash: 'dash' },
                 },
               ]}
               layout={{
                 paper_bgcolor: 'transparent',
                 plot_bgcolor: 'transparent',
-                font: { color: '#AEB5B1', family: 'Inter', size: 12 },
-                margin: { t: 20, r: 20, b: 50, l: 60 },
+                font: { color: '#AEB5B1', family: 'Inter', size: 11 },
+                margin: { t: 20, r: 10, b: 45, l: 50 },
                 xaxis: { 
                   gridcolor: 'rgba(255,255,255,0.08)',
                   showgrid: true,
-                  title: { text: 'Year', font: { color: '#AEB5B1' } }
+                  title: { text: 'Year', font: { color: '#AEB5B1', size: 10 } }
                 },
                 yaxis: { 
                   gridcolor: 'rgba(255,255,255,0.08)',
                   showgrid: true,
-                  title: { text: 'Market Value (Million USD)', font: { color: '#AEB5B1' } }
+                  title: { text: 'Value (M USD)', font: { color: '#AEB5B1', size: 10 } }
                 },
                 hovermode: 'x unified',
                 showlegend: true,
                 legend: { 
-                  x: 0,
-                  y: 1.1,
-                  orientation: 'h',
+                  x: 0, y: 1.12, orientation: 'h',
                   bgcolor: 'transparent',
-                  font: { color: '#AEB5B1' }
+                  font: { color: '#AEB5B1', size: 11 }
                 },
               }}
               config={{ displayModeBar: false, responsive: true }}
-              style={{ width: '100%', height: '400px' }}
+              style={{ width: '100%', height: '280px' }}
             />
           </div>
 
-          <div className="bg-white/5 rounded-xl border border-white/16 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-ivory">Market Volume: Historical & Forecast</h3>
+          <div className="bg-white/5 rounded-xl border border-white/16 p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 sm:mb-6">
+              <h3 className="text-base sm:text-xl font-semibold text-ivory">Market Volume: Historical &amp; Forecast</h3>
               <div className="flex items-center space-x-4 text-sm">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-ivory rounded-full"></div>
@@ -220,8 +218,8 @@ export default function ForecastSection() {
                   type: 'scatter',
                   mode: 'lines+markers',
                   name: 'Historical',
-                  marker: { color: '#F4F1E8', size: 7 },
-                  line: { color: '#F4F1E8', width: 3 },
+                  marker: { color: '#F4F1E8', size: 6 },
+                  line: { color: '#F4F1E8', width: 2 },
                 },
                 {
                   x: predictions.map(d => d.year),
@@ -229,36 +227,35 @@ export default function ForecastSection() {
                   type: 'scatter',
                   mode: 'lines+markers',
                   name: 'Forecast',
-                  marker: { color: '#00C8C8', size: 7 },
-                  line: { color: '#00C8C8', width: 3, dash: 'dash' },
+                  marker: { color: '#00C8C8', size: 6 },
+                  line: { color: '#00C8C8', width: 2, dash: 'dash' },
                 },
               ]}
               layout={{
                 paper_bgcolor: 'transparent',
                 plot_bgcolor: 'transparent',
-                font: { color: '#AEB5B1', family: 'Inter', size: 12 },
-                margin: { t: 20, r: 20, b: 50, l: 60 },
+                font: { color: '#AEB5B1', family: 'Inter', size: 11 },
+                margin: { t: 20, r: 10, b: 45, l: 50 },
                 xaxis: { 
                   gridcolor: 'rgba(255,255,255,0.08)',
                   showgrid: true,
-                  title: { text: 'Year', font: { color: '#AEB5B1' } }
+                  title: { text: 'Year', font: { color: '#AEB5B1', size: 10 } }
                 },
                 yaxis: { 
                   gridcolor: 'rgba(255,255,255,0.08)',
                   showgrid: true,
-                  title: { text: 'Market Volume (Million tCO₂)', font: { color: '#AEB5B1' } }
+                  title: { text: 'Volume (M tCO₂)', font: { color: '#AEB5B1', size: 10 } }
                 },
                 hovermode: 'x unified',
                 showlegend: true,
                 legend: { 
-                  x: 0,
-                  y: 1.1,
-                  orientation: 'h',
-                  bgcolor: 'transparent'
+                  x: 0, y: 1.12, orientation: 'h',
+                  bgcolor: 'transparent',
+                  font: { color: '#AEB5B1', size: 11 }
                 },
               }}
               config={{ displayModeBar: false, responsive: true }}
-              style={{ width: '100%', height: '400px' }}
+              style={{ width: '100%', height: '280px' }}
             />
           </div>
         </div>

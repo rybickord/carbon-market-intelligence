@@ -52,24 +52,24 @@ export default function TradingSection() {
   const verificationOptions = ['Verified', 'Disputed']
 
   return (
-    <section id="trading" className="py-24 bg-carbon">
-      <div className="section-container space-y-16">
+    <section id="trading" className="py-10 sm:py-16 lg:py-24 bg-carbon">
+      <div className="section-container space-y-10 sm:space-y-16">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-cyan/10 border border-cyan/20 rounded-full mb-6">
-            <span className="text-sm text-cyan font-medium uppercase tracking-wider">Trading Intelligence</span>
+          <div className="inline-flex items-center space-x-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-cyan/10 border border-cyan/20 rounded-full mb-4 sm:mb-6">
+            <span className="text-xs sm:text-sm text-cyan font-medium uppercase tracking-wider">Trading Intelligence</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-ivory mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ivory mb-3 sm:mb-4">
             Trading Action Prediction
           </h2>
-          <p className="text-xl text-ivory-secondary">
+          <p className="text-base sm:text-xl text-ivory-secondary">
             ML-powered prediction for carbon credit trading actions. Enter your company's 
             emissions profile and market conditions to predict whether to Buy or Sell carbon credits.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="card p-8 space-y-6">
-            <h3 className="text-2xl font-bold text-ivory">Company Profile</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          <div className="card p-5 sm:p-8 space-y-4 sm:space-y-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-ivory">Company Profile</h3>
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-ivory-secondary mb-2">
@@ -78,7 +78,7 @@ export default function TradingSection() {
                 <select
                   value={formData.industry_type}
                   onChange={(e) => setFormData({ ...formData, industry_type: e.target.value })}
-                  className="w-full bg-carbon-surface text-ivory px-4 py-3 rounded-lg border border-white/16 focus:border-cyan focus:outline-none"
+                  className="w-full bg-carbon-surface text-ivory px-4 py-3 rounded-lg border border-white/16 focus:border-cyan focus:outline-none appearance-none"
                 >
                   {industryOptions.map(option => (
                     <option key={option} value={option}>{option}</option>
@@ -93,7 +93,7 @@ export default function TradingSection() {
                 <select
                   value={formData.fuel_type}
                   onChange={(e) => setFormData({ ...formData, fuel_type: e.target.value })}
-                  className="w-full bg-carbon-surface text-ivory px-4 py-3 rounded-lg border border-white/16 focus:border-cyan focus:outline-none"
+                  className="w-full bg-carbon-surface text-ivory px-4 py-3 rounded-lg border border-white/16 focus:border-cyan focus:outline-none appearance-none"
                 >
                   {fuelOptions.map(option => (
                     <option key={option} value={option}>{option}</option>
@@ -108,7 +108,7 @@ export default function TradingSection() {
                 <select
                   value={formData.verification_status}
                   onChange={(e) => setFormData({ ...formData, verification_status: e.target.value })}
-                  className="w-full bg-carbon-surface text-ivory px-4 py-3 rounded-lg border border-white/16 focus:border-cyan focus:outline-none"
+                  className="w-full bg-carbon-surface text-ivory px-4 py-3 rounded-lg border border-white/16 focus:border-cyan focus:outline-none appearance-none"
                 >
                   {verificationOptions.map(option => (
                     <option key={option} value={option}>{option}</option>
@@ -116,7 +116,7 @@ export default function TradingSection() {
                 </select>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-ivory-secondary mb-2">
                     Energy Demand (MWh)
@@ -145,7 +145,7 @@ export default function TradingSection() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-ivory-secondary mb-2">
                     Emissions Produced (tCO₂)
@@ -204,8 +204,8 @@ export default function TradingSection() {
             </button>
           </div>
 
-          <div className="card p-8 space-y-6">
-            <h3 className="text-2xl font-bold text-ivory">Prediction Result</h3>
+          <div className="card p-5 sm:p-8 space-y-4 sm:space-y-6">
+            <h3 className="text-xl sm:text-2xl font-bold text-ivory">Prediction Result</h3>
             {loading ? (
               <LoadingSpinner message="Analyzing company profile..." />
             ) : prediction ? (
@@ -216,7 +216,7 @@ export default function TradingSection() {
                     : 'bg-negative/20 border border-negative/30'
                 }`}>
                   <div className="text-sm text-ivory-secondary mb-2">Recommended Action</div>
-                  <div className={`text-4xl font-bold ${
+                  <div className={`text-3xl sm:text-4xl font-bold ${
                     prediction.predicted_action === 'Buy' ? 'text-positive' : 'text-negative'
                   }`}>
                     {prediction.predicted_action.toUpperCase()}
